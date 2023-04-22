@@ -6,16 +6,14 @@ jokeBtn.addEventListener("click", generateJoke);
 
 generateJoke();
 
-function generateJoke() {
+async function generateJoke() {
   const config = {
     headers: {
       Accept: "application/json",
     },
   };
 
-  fetch(url, config)
-    .then((res) => res.json())
-    .then((data) => {
-      jokeElem.innerHTML = data.joke;
-    });
+  const res = await fetch(url, config);
+  const data = await res.json();
+  jokeElem.innerHTML = data.joke;
 }
